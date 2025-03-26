@@ -8,28 +8,32 @@
      --input-text: #333;
      --input-placeholder: #aaa;
      --btn-bg: #3498db;
-     --btn-dark-bg: #edd33d;
      --btn-text: #fff;
-     --btn-dark-text: #000000;
      --btn-hover-bg: #2980b9;
      --btn-active-bg: #1f618d;
      --input-focus-border: #66afe9;
+     /* Botón de dark mode en modo claro: fondo negro y texto blanco */
+     --btn-dark-bg: #000000;
+     --btn-dark-text: #fff;
 }
 
-/* Tema oscuro: puedes aplicarlo añadiendo la clase "dark-theme" al <body> o <html> */
+/* Tema oscuro: al agregar la clase "dark-theme" al <body> o <html> */
 .dark-theme {
      --body-bg: #333;
      --chat-bg: #444;
      --message-bg: #555;
      --input-section-bg: #666;
      --input-border: #777;
-     --input-text: #fff;
+     --input-text: #333;
      --input-placeholder: #ccc;
      --btn-bg: #555;
      --btn-text: #fff;
      --btn-hover-bg: #666;
      --btn-active-bg: #777;
      --input-focus-border: #888;
+     /* Botón de dark mode en modo oscuro: fondo amarillo y texto negro */
+     --btn-dark-bg: #edd33d;
+     --btn-dark-text: #000000;
 }
 
 /* Estilos generales */
@@ -50,27 +54,27 @@ body {
 }
 
 #chatBody {
+     display: flex;
+     flex-direction: column;
      width: 50%;
      height: 100vh;
      background-color: var(--chat-bg);
-     display: flex;
-     flex-direction: column;
-     /* Asegura que sus secciones internas se apilen */
 }
 
+/* #messageSection se expande para ocupar todo el espacio disponible */
 #messageSection {
-     width: 100%;
-     height: 80%;
+     flex: 1;
+     overflow-y: auto;
      background-color: var(--message-bg);
 }
 
+/* #inputSection se ajusta a su contenido automáticamente */
 #inputSection {
-     width: 100%;
-     height: 20%;
      display: flex;
-     justify-content: space-between;
      align-items: center;
      background-color: var(--input-section-bg);
+     padding: 10px;
+     gap: 10px;
 }
 
 #input {
@@ -106,6 +110,7 @@ body {
      font-size: 16px;
      transition: background-color 0.3s ease;
 }
+
 #btnDarkMode {
      background-color: var(--btn-dark-bg);
      color: var(--btn-dark-text);
@@ -139,7 +144,6 @@ body {
 @media (max-width: 768px) {
      #chatBody {
           width: 100%;
-          /* Ahora el chat ocupa todo el ancho */
      }
 
      #inputSection {
@@ -157,4 +161,61 @@ body {
           width: 100%;
           padding: 10px;
      }
+}
+
+/* Mensajes del super usuario (alineados a la derecha) */
+#superUserMessage {
+     margin: 10px 0;
+     padding: 10px;
+     margin-right: 8px;
+     background-color: #f1f1f1;
+     border-radius: 5px;
+     max-width: 90%;
+     word-wrap: break-word;
+     margin-left: auto;
+     /* Empuja el mensaje a la derecha */
+}
+
+#superUserMessage .username {
+     font-weight: bold;
+     color: #3498db;
+     display: block;
+     text-align: right;
+}
+
+#superUserMessage .message-text {
+     display: block;
+     color: #333;
+     margin-top: 5px;
+     line-height: 1.4;
+     text-align: right;
+}
+
+/* Mensajes de usuario (alineados a la izquierda) */
+#userMessage {
+     margin: 10px 0;
+     width: 80%;
+     padding: 10px;
+     margin-left: 8px;
+     background-color: #f1f1f1;
+     border-radius: 5px;
+     max-width: 90%;
+     word-wrap: break-word;
+     margin-right: auto;
+     /* Empuja el mensaje a la izquierda */
+}
+
+#userMessage .username {
+     font-weight: bold;
+     color: #3498db;
+     display: block;
+     text-align: left;
+}
+
+#userMessage .message-text {
+     display: block;
+     color: #333;
+     margin-top: 5px;
+     line-height: 1.4;
+     text-align: left;
 }
